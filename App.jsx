@@ -1,39 +1,35 @@
 import React, { useState } from 'react'
 
-function App() {
-  const[tasks,setTask]=useState([]);
-  const[text,setText]=useState("")
-  const addTask=()=>{
-    setTask([...tasks ,{name:text, completed:false}])
-    setText("")
-  }
+function calculator() {
+  const [num1,setNum1]=useState("")
+  const [num2,setNum2]=useState("")
 
-  const deleteTask=(index)=>{
-    setTask(tasks.filter((_,i)=>i !== index));
-  }
+  const a=Number(num1);
+  const b=Number(num2);
   return (
     <div>
-      <h1>TO-DO list</h1>
-      <input 
-      value={text} 
-      onChange={(e)=>setText(e.target.value)}
-      placeholder='Enter task'/>
-      <button onClick={addTask}>Add</button>
-      <ul>
-      
-        {tasks.map((task,index)=>(
-          <li key={index}>
-            <input 
-            type="checkbox"
-            checked={tasks.completed}
-         />
-            <span>{task.name}</span>
-            <button onClick={()=>deleteTask(index)}>delete</button>
-          </li>
-        ))}
-      </ul>
+     <h1 style={{textDecoration:"underline"}}>calculator</h1>
+     <input type="number" 
+     placeholder='Enter the first value'
+     onChange={(e)=>setNum1(e.target.value)}/>
+     <input type="number"
+      placeholder='Enter the second value' 
+      onChange={(e)=>setNum2(e.target.value)}/>
+     <div style={{height:"200px",
+      width:"300px",
+      border:"3px inset balck",
+      marginLeft:"530px",
+      marginTop:"20px",
+      backgroundColor:"lightblue"}}>
+        <h3>Result :</h3>
+        <p><strong>Addition:</strong>{a+b}</p>
+        <p><strong>Subtraction:</strong>{a-b}</p>
+        <p><strong>Multiplication:</strong>{a*b}</p>
+        <p><strong>Division:</strong>{b==0 ?"can't divided by zero":a/b}</p>
+
+     </div>
     </div>
   )
 }
 
-export default App
+export default calculator
